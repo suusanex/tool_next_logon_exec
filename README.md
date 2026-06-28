@@ -20,6 +20,12 @@ NextLogonExec.exe run --id <job-id> --store-dir <resolved path>
 dotnet build src/NextLogonExec/NextLogonExec.csproj
 ```
 
+## 発行
+
+```text
+dotnet publish src/NextLogonExec/NextLogonExec.csproj /p:PublishProfile=Folder
+```
+
 ## schedule
 
 ```text
