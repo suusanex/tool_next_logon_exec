@@ -21,8 +21,8 @@ public sealed class InvalidArgumentsException : NextLogonExecException
 
 public sealed class JobConflictException : NextLogonExecException
 {
-    public JobConflictException(string message)
-        : base(message, ExitCode.JobConflict)
+    public JobConflictException(string message, Exception? innerException = null)
+        : base(message, ExitCode.JobConflict, innerException)
     {
     }
 }

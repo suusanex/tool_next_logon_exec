@@ -32,10 +32,15 @@ public sealed class JobStore
 
     public ScheduledJob LoadPending(string id)
     {
+        return TryLoadPending(id) ?? throw new JobNotFoundException($"Job '{id}' was not found.");
+    }
+
+    public ScheduledJob? TryLoadPending(string id)
+    {
         string path = PendingPath(id);
         if (!File.Exists(path))
         {
-            throw new JobNotFoundException($"Job '{id}' was not found.");
+            return null;
         }
 
         try
@@ -55,35 +60,63 @@ public sealed class JobStore
 
     public bool PendingExists(string id)
     {
-        return File.Exists(PendingPath(id));
+        try
+        {
+            return File.Exists(PendingPath(id));
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            throw new JobStoreException($"Failed to query pending job '{id}'.", ex);
+        }
     }
 
     public bool HistoryExists(string id)
     {
-        return File.Exists(HistoryPath(id));
+        try
+        {
+            return File.Exists(HistoryPath(id));
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            throw new JobStoreException($"Failed to query history for job '{id}'.", ex);
+        }
     }
 
     public IReadOnlyList<string> ListPendingIds()
     {
-        if (!Directory.Exists(storeDirectory))
+        try
         {
-            return Array.Empty<string>();
-        }
+            if (!Directory.Exists(storeDirectory))
+            {
+                return Array.Empty<string>();
+            }
 
-        return Directory.EnumerateFiles(storeDirectory, "*.json")
-            .Select(Path.GetFileNameWithoutExtension)
-            .Where(static id => !string.IsNullOrWhiteSpace(id))
-            .Select(static id => id!)
-            .OrderBy(static id => id, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+            return Directory.EnumerateFiles(storeDirectory, "*.json")
+                .Select(Path.GetFileNameWithoutExtension)
+                .Where(static id => !string.IsNullOrWhiteSpace(id))
+                .Select(static id => id!)
+                .OrderBy(static id => id, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            throw new JobStoreException("Failed to list pending jobs.", ex);
+        }
     }
 
     public void DeletePending(string id)
     {
-        string path = PendingPath(id);
-        if (File.Exists(path))
+        try
         {
-            File.Delete(path);
+            string path = PendingPath(id);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            throw new JobStoreException($"Failed to delete pending job '{id}'.", ex);
         }
     }
 

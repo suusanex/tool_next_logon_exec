@@ -8,9 +8,14 @@ List<(string Name, Func<Task> Test)> tests =
 [
     ("schedule stores job and registers internal run action", ScheduleStoresJobAndRegistersInternalRunAction),
     ("run unregisters before launch and passes ArgumentList", RunUnregistersBeforeLaunchAndPassesArgumentList),
+    ("run does not apply delay a second time", RunDoesNotApplyDelayASecondTime),
     ("cancel removes pending job and unregisters task", CancelRemovesPendingJobAndUnregistersTask),
     ("status returns missing when nothing exists", StatusReturnsMissingWhenNothingExists),
-    ("require-new-boot returns invalid arguments", RequireNewBootReturnsInvalidArguments)
+    ("require-new-boot returns invalid arguments", RequireNewBootReturnsInvalidArguments),
+    ("schedule rolls back new job when registration fails", ScheduleRollsBackNewJobWhenRegistrationFails),
+    ("replace restores previous job when registration fails", ReplaceRestoresPreviousJobWhenRegistrationFails),
+    ("result writer failure returns job store exit code", ResultWriterFailureReturnsJobStoreExitCode),
+    ("windows argument escaper handles spaces quotes and trailing slashes", WindowsArgumentEscaperHandlesSpecialCharacters)
 ];
 
 int failures = 0;
@@ -63,6 +68,7 @@ static async Task ScheduleStoresJobAndRegistersInternalRunAction()
     AssertEqual("DOMAIN\\user", registration.UserId);
     AssertTrue(registration.Elevated);
     AssertTrue(registration.ActionArguments.Contains("run --id Case123", StringComparison.Ordinal));
+    AssertTrue(registration.ActionArguments.Contains("--store-dir", StringComparison.Ordinal));
     AssertFalse(registration.ActionArguments.Contains("TestHost.exe", StringComparison.OrdinalIgnoreCase));
 }
 
@@ -96,6 +102,31 @@ static async Task RunUnregistersBeforeLaunchAndPassesArgumentList()
     AssertSequenceEqual(["continue", "--case", "CaseRun"], launcher.LastJob?.Arguments ?? []);
     AssertFalse(File.Exists(System.IO.Path.Combine(temp.Path, "CaseRun.json")));
     AssertTrue(File.Exists(System.IO.Path.Combine(temp.Path, "history", "CaseRun.json")));
+}
+
+static async Task RunDoesNotApplyDelayASecondTime()
+{
+    using TempDirectory temp = new();
+    FakeScheduler scheduler = new();
+    FakeLauncher launcher = new();
+    Application app = CreateApp(scheduler, launcher, new StringWriter(), new StringWriter());
+    JobStore store = new(temp.Path);
+    store.SavePending(new ScheduledJob
+    {
+        Id = "DelayRun",
+        CreatedAtUtc = DateTimeOffset.UtcNow,
+        CreatedByUser = "DOMAIN\\user",
+        FileName = "runner.exe",
+        Arguments = [],
+        ConsumePolicy = "BeforeLaunch",
+        DelaySeconds = 60
+    });
+    using CancellationTokenSource timeout = new(TimeSpan.FromSeconds(5));
+
+    int exitCode = await app.RunAsync(["run", "--id", "DelayRun", "--store-dir", temp.Path], timeout.Token);
+
+    AssertEqual((int)ExitCode.Success, exitCode);
+    AssertEqual("runner.exe", launcher.LastJob?.FileName);
 }
 
 static async Task CancelRemovesPendingJobAndUnregistersTask()
@@ -151,6 +182,91 @@ static async Task RequireNewBootReturnsInvalidArguments()
     AssertTrue(error.ToString().Contains("not implemented", StringComparison.OrdinalIgnoreCase));
 }
 
+static async Task ScheduleRollsBackNewJobWhenRegistrationFails()
+{
+    using TempDirectory temp = new();
+    FakeScheduler scheduler = new() { RegisterException = new TaskSchedulerClientException("registration failed") };
+    Application app = CreateApp(scheduler, new FakeLauncher(), new StringWriter(), new StringWriter());
+
+    int exitCode = await app.RunAsync([
+        "schedule",
+        "--id", "RollbackNew",
+        "--store-dir", temp.Path,
+        "--",
+        "tool.exe"
+    ]);
+
+    AssertEqual((int)ExitCode.TaskSchedulerError, exitCode);
+    AssertFalse(File.Exists(System.IO.Path.Combine(temp.Path, "RollbackNew.json")));
+}
+
+static async Task ReplaceRestoresPreviousJobWhenRegistrationFails()
+{
+    using TempDirectory temp = new();
+    FakeScheduler scheduler = new() { RegisterException = new TaskSchedulerClientException("registration failed") };
+    Application app = CreateApp(scheduler, new FakeLauncher(), new StringWriter(), new StringWriter());
+    JobStore store = new(temp.Path);
+    store.SavePending(new ScheduledJob
+    {
+        Id = "ReplaceMe",
+        CreatedAtUtc = DateTimeOffset.UtcNow,
+        CreatedByUser = "DOMAIN\\user",
+        FileName = "old.exe",
+        Arguments = ["old"],
+        ConsumePolicy = "BeforeLaunch"
+    });
+
+    int exitCode = await app.RunAsync([
+        "schedule",
+        "--id", "ReplaceMe",
+        "--replace",
+        "--store-dir", temp.Path,
+        "--",
+        "new.exe"
+    ]);
+
+    AssertEqual((int)ExitCode.TaskSchedulerError, exitCode);
+    ScheduledJob restored = store.LoadPending("ReplaceMe");
+    AssertEqual("old.exe", restored.FileName);
+    AssertSequenceEqual(["old"], restored.Arguments);
+}
+
+static async Task ResultWriterFailureReturnsJobStoreExitCode()
+{
+    using TempDirectory temp = new();
+    FakeScheduler scheduler = new();
+    FakeLauncher launcher = new() { Result = LaunchResult.Exited(DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, 1234, 0) };
+    StringWriter error = new();
+    Application app = CreateApp(scheduler, launcher, new StringWriter(), error);
+    string resultDirectory = System.IO.Path.Combine(temp.Path, "result-as-directory");
+    Directory.CreateDirectory(resultDirectory);
+    JobStore store = new(temp.Path);
+    store.SavePending(new ScheduledJob
+    {
+        Id = "BadResult",
+        CreatedAtUtc = DateTimeOffset.UtcNow,
+        CreatedByUser = "DOMAIN\\user",
+        FileName = "runner.exe",
+        Arguments = [],
+        ConsumePolicy = "BeforeLaunch",
+        WaitForExit = true,
+        ResultPath = resultDirectory
+    });
+
+    int exitCode = await app.RunAsync(["run", "--id", "BadResult", "--store-dir", temp.Path]);
+
+    AssertEqual((int)ExitCode.JobStoreError, exitCode);
+    AssertTrue(error.ToString().Contains("Failed to write result", StringComparison.Ordinal));
+}
+
+static Task WindowsArgumentEscaperHandlesSpecialCharacters()
+{
+    string joined = WindowsArgumentEscaper.Join(["run", "--store-dir", "C:\\Path With Space\\", "quote\"value"]);
+
+    AssertEqual("run --store-dir \"C:\\Path With Space\\\\\" \"quote\\\"value\"", joined);
+    return Task.CompletedTask;
+}
+
 static Application CreateApp(FakeScheduler scheduler, FakeLauncher launcher, TextWriter output, TextWriter error)
 {
     return new Application(scheduler, launcher, new FakeCurrentUserProvider(), output, error, "C:\\Tools\\NextLogonExec.exe");
@@ -196,8 +312,15 @@ sealed class FakeScheduler : ITaskSchedulerClient
 
     public List<OrderedEvent> Events { get; } = [];
 
+    public Exception? RegisterException { get; set; }
+
     public void RegisterNextLogonTask(ScheduledTaskRegistration registration)
     {
+        if (RegisterException is not null)
+        {
+            throw RegisterException;
+        }
+
         Registrations.Add(registration);
     }
 
@@ -219,11 +342,13 @@ sealed class FakeLauncher : IProcessLauncher
 
     public List<OrderedEvent> Events { get; } = [];
 
+    public LaunchResult? Result { get; set; }
+
     public Task<LaunchResult> LaunchAsync(ScheduledJob job, CancellationToken cancellationToken)
     {
         LastJob = job;
         Events.Add(OrderedEvent.Next("launch:" + job.Id));
-        return Task.FromResult(LaunchResult.Started(DateTimeOffset.UtcNow, 1234));
+        return Task.FromResult(Result ?? LaunchResult.Started(DateTimeOffset.UtcNow, 1234));
     }
 }
 

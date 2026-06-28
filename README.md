@@ -9,7 +9,7 @@ Windows での連続テスト等に使用する想定のツール。タスクス
 Task Scheduler に登録する action は呼び出し元コマンドではなく、常に次の形になる。
 
 ```text
-NextLogonExec.exe run --id <job-id>
+NextLogonExec.exe run --id <job-id> --store-dir <resolved path>
 ```
 
 呼び出し元コマンドは job JSON に保存し、起動時は `ProcessStartInfo.ArgumentList` で渡す。暗黙の `cmd.exe /c` ラップは行わない。shell 動作が必要な場合、呼び出し元が `cmd.exe` または PowerShell を明示的に指定する。

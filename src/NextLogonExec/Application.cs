@@ -35,13 +35,20 @@ public sealed class Application
 
     public static Application CreateDefault()
     {
+        string executablePath = Environment.ProcessPath
+            ?? throw new TaskSchedulerClientException("Executable path is not available for Task Scheduler action.");
+        if (Directory.Exists(executablePath))
+        {
+            throw new TaskSchedulerClientException("Executable path resolved to a directory.");
+        }
+
         return new Application(
             new ComTaskSchedulerClient(),
             new ProcessLauncher(),
             new CurrentUserProvider(),
             Console.Out,
             Console.Error,
-            Environment.ProcessPath ?? AppContext.BaseDirectory);
+            executablePath);
     }
 
     public async Task<int> RunAsync(string[] args, CancellationToken cancellationToken = default)
@@ -87,15 +94,10 @@ public sealed class Application
         string id = string.IsNullOrWhiteSpace(options.Id) ? Guid.NewGuid().ToString("N") : options.Id;
         JobId.Validate(id);
 
-        if (store.PendingExists(id) && !options.Replace)
+        ScheduledJob? existingJob = store.TryLoadPending(id);
+        if (existingJob is not null && !options.Replace)
         {
             throw new JobConflictException($"Job '{id}' already exists. Use --replace to replace it.");
-        }
-
-        if (options.Replace)
-        {
-            scheduler.UnregisterTask(id);
-            store.DeletePending(id);
         }
 
         UserInfo userInfo = currentUserProvider.GetCurrentUser();
@@ -123,17 +125,43 @@ public sealed class Application
         store.SavePending(job);
 
         string actionArguments = WindowsArgumentEscaper.Join(new[] { "run", "--id", id, "--store-dir", storeDirectory });
-        scheduler.RegisterNextLogonTask(new ScheduledTaskRegistration(
-            id,
-            executablePath,
-            actionArguments,
-            userInfo.Name,
-            options.Elevated,
-            options.DelaySeconds));
+        try
+        {
+            scheduler.RegisterNextLogonTask(new ScheduledTaskRegistration(
+                id,
+                executablePath,
+                actionArguments,
+                userInfo.Name,
+                options.Elevated,
+                options.DelaySeconds));
+        }
+        catch
+        {
+            RollBackPendingJob(store, job.Id, existingJob);
+            throw;
+        }
 
         output.WriteLine($"Scheduled job '{id}'.");
         output.WriteLine($"Job store: {storeDirectory}");
         return (int)ExitCode.Success;
+    }
+
+    private static void RollBackPendingJob(JobStore store, string id, ScheduledJob? existingJob)
+    {
+        try
+        {
+            if (existingJob is null)
+            {
+                store.DeletePending(id);
+                return;
+            }
+
+            store.SavePending(existingJob);
+        }
+        catch (Exception ex)
+        {
+            Trace.TraceError(ex.ToString());
+        }
     }
 
     private async Task<int> RunJobAsync(RunOptions options, CancellationToken cancellationToken)
@@ -146,11 +174,6 @@ public sealed class Application
 
         scheduler.UnregisterTask(options.Id);
         store.DeletePending(options.Id);
-
-        if (job.DelaySeconds > 0)
-        {
-            await Task.Delay(TimeSpan.FromSeconds(job.DelaySeconds), cancellationToken);
-        }
 
         LaunchResult result;
         try

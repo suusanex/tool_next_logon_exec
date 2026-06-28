@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace NextLogonExec.Jobs;
 
 public sealed class JobLock : IAsyncDisposable, IDisposable
@@ -21,7 +23,8 @@ public sealed class JobLock : IAsyncDisposable, IDisposable
         }
         catch (IOException ex)
         {
-            throw new JobConflictException($"Job '{id}' is already running or locked: {ex.Message}");
+            Trace.TraceError(ex.ToString());
+            throw new JobConflictException($"Job '{id}' is already running or locked: {ex.Message}", ex);
         }
         catch (UnauthorizedAccessException ex)
         {
