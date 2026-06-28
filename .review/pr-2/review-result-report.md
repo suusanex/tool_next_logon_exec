@@ -17,6 +17,7 @@
 - RP-005: job lock の `IOException` を trace し、inner exception 付きで `JobConflictException` に変換した。
 - RP-006: README の Task Scheduler action 例に `--store-dir <resolved path>` を追加した。
 - RP-007: store-dir 伝播、Windows argument escaping、delay 単一適用、rollback、result writer error mapping の回帰テストを追加した。
+- Copilot review threads 5件は、修正 push 後にすべて `isOutdated: true` となったことを確認し、すべて解決済みにした。
 
 ## 未検証
 
@@ -26,7 +27,7 @@
 ## 人手で必要な作業
 
 - 人手での作業が必要: 実 Task Scheduler、ログオン、再起動を伴う smoke test を実施する場合は、Windows実機でREADMEの手順に従って確認する。
-- 人手での作業が必要: push後にGitHub上の CI/checks と PR review thread の状態を確認する。
+- 人手での作業が必要: GitHub上の CI/checks は現時点で報告なしのため、必要な CI がある場合は別途確認する。
 
 ## 変更ファイル
 
@@ -53,12 +54,14 @@
 | `dotnet run --project tests/NextLogonExec.Tests/NextLogonExec.Tests.csproj --no-build` | Passed | 10 tests |
 | `dotnet format src/NextLogonExec/NextLogonExec.csproj --verify-no-changes` | Passed | 変更不要 |
 | `git diff --check` | Passed | CRLF warning のみ |
+| `gh pr checks 2 --repo suusanex/tool_next_logon_exec` | No checks reported | GitHub上にchecksなし |
+| `gh api graphql resolveReviewThread` | Passed | Copilot review threads 5件を解決済みに更新 |
 
 ## Commit/Push
 
-- Commit: pending
-- Push: pending
-- Reason if not performed: このレポート作成時点では未実施。検証済みのため、この後 commit / push する。
+- Commit: `aac46ec PRレビュー指摘を反映する`
+- Push: `codex/issue-1` pushed to `origin`
+- Reason if not performed: N/A
 
 ## 残件
 
