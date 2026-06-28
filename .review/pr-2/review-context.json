@@ -1,0 +1,649 @@
+﻿{
+  "generatedAt": "2026-06-28T11:27:02.0697494+00:00",
+  "repository": "suusanex/tool_next_logon_exec",
+  "pullRequest": 2,
+  "includeChecks": false,
+  "copilotReviewWait": {
+    "status": "reviewAndInline",
+    "timedOut": false,
+    "elapsedSeconds": 12.283,
+    "startedAt": "2026-06-28T11:26:49.7852933+00:00",
+    "completedAt": "2026-06-28T11:27:02.0687583+00:00",
+    "headRefOid": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+    "timeoutSeconds": 180,
+    "pollIntervalSeconds": 10,
+    "reviewFound": true,
+    "reviewState": "COMMENTED",
+    "reviewSubmittedAt": "2026-06-28T11:26:27Z",
+    "expectedInlineCommentCount": 5,
+    "actualInlineCommentCount": 5,
+    "stableSamplesObserved": 2
+  },
+  "sources": {
+    "prView": {
+      "author": {
+        "id": "MDQ6VXNlcjE1NjEwNzA1",
+        "is_bot": false,
+        "login": "suusanex",
+        "name": ""
+      },
+      "baseRefName": "main",
+      "body": "## Summary\n- \u0060NextLogonExec\u0060 \u306EREADME\u3092\u3001\u0060schedule\u0060 / \u0060run\u0060 / \u0060cancel\u0060 / \u0060status\u0060 / \u0060list\u0060 \u3092\u542B\u3080\u73FE\u5728\u306E\u52D5\u4F5C\u4ED5\u69D8\u306B\u5408\u308F\u305B\u3066\u6574\u7406\n- \u5B9F\u88C5\u8A08\u753B\u3001\u5951\u7D04\u3001\u691C\u8A3C\u3001\u79FB\u884C\u7528\u306E\u5404 plan \u3092\u8FFD\u52A0\u3057\u3066\u3001\u8981\u6C42\u30FB\u30EA\u30B9\u30AF\u30FB\u6B8B\u4EF6\u306E\u6D41\u308C\u3092\u660E\u78BA\u5316\n- \u4E3B\u8981\u306A\u5B9F\u88C5\u30AF\u30E9\u30B9\u3068\u30C6\u30B9\u30C8\u5165\u308A\u53E3\u3092\u8FFD\u52A0\u3057\u3001\u30B8\u30E7\u30D6\u4FDD\u5B58\u30FB\u8D77\u52D5\u30FB\u7D50\u679C\u8A18\u9332\u30FBTask Scheduler \u9023\u643A\u306E\u9AA8\u683C\u3092\u7528\u610F\n- PR\u30EC\u30D3\u30E5\u30FC\u3067\u306F\u3001\u0060CommandLineParser\u0060 \u3068 \u0060WindowsArgumentEscaper\u0060 \u306E\u5F15\u6570\u89E3\u91C8\u3001\u0060JobStore\u0060 / \u0060JobLock\u0060 \u306E\u6392\u4ED6\u3068\u6C38\u7D9A\u5316\u3001\u0060ProcessLauncher\u0060 \u306E\u8D77\u52D5\u6761\u4EF6\u3001\u0060ComTaskSchedulerClient\u0060 \u306E\u767B\u9332\u30FB\u524A\u9664\u30FB\u30A8\u30E9\u30FC\u51E6\u7406\u3092\u91CD\u70B9\u78BA\u8A8D\u3057\u3066\u307B\u3057\u3044\n\n## Testing\n- Unit tests \u3092\u8FFD\u52A0\u3057\u3066\u3001\u30B3\u30DE\u30F3\u30C9\u30E9\u30A4\u30F3\u89E3\u6790\u3001\u30B8\u30E7\u30D6\u7BA1\u7406\u3001\u7D50\u679C\u66F8\u304D\u8FBC\u307F\u3001\u8D77\u52D5\u30D5\u30ED\u30FC\u306E\u4E3B\u8981\u5206\u5C90\u3092\u78BA\u8A8D\n- \u5B9FOS\u306E Task Scheduler \u3084\u30ED\u30B0\u30AA\u30F3\u72B6\u614B\u306F\u5909\u66F4\u305B\u305A\u3001\u30B9\u30BF\u30D6\u524D\u63D0\u306E\u691C\u8A3C\u306B\u9650\u5B9A",
+      "comments": [],
+      "commits": [
+        {
+          "authoredDate": "2026-06-28T11:22:01Z",
+          "authors": [
+            {
+              "email": "suusan@himado.net",
+              "id": "MDQ6VXNlcjE1NjEwNzA1",
+              "login": "suusanex",
+              "name": "suusanex"
+            }
+          ],
+          "committedDate": "2026-06-28T11:22:01Z",
+          "messageBody": "",
+          "messageHeadline": "README\u3068\u5B9F\u88C5\u8A08\u753B\u3092NextLogonExec\u4ED5\u69D8\u306B\u66F4\u65B0\u3059\u308B",
+          "oid": "d466b4428d5a7b62e3cc796124f3814bc9449b18"
+        }
+      ],
+      "files": [
+        {
+          "path": "README.md",
+          "additions": 147,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-change-risk-triage.md",
+          "additions": 113,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-implementation-contract-kernel.md",
+          "additions": 79,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-implementation-contract-review-kernel.md",
+          "additions": 47,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-implementation-execution.md",
+          "additions": 95,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-implementation-handoff-review.md",
+          "additions": 95,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-residual-decision-gate.md",
+          "additions": 64,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-runtime-contract-kernel.md",
+          "additions": 39,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-test-design-kernel.md",
+          "additions": 47,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec-verification-kernel.md",
+          "additions": 113,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "plans/issue-1-next-logon-exec.md",
+          "additions": 115,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Application.cs",
+          "additions": 256,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Commands/CommandLine.cs",
+          "additions": 39,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Commands/CommandLineParser.cs",
+          "additions": 218,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Commands/JobId.cs",
+          "additions": 17,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Diagnostics/ResultWriter.cs",
+          "additions": 26,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/ExitCode.cs",
+          "additions": 14,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Jobs/JobLock.cs",
+          "additions": 41,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Jobs/JobStore.cs",
+          "additions": 117,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Jobs/ScheduledJob.cs",
+          "additions": 40,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Jobs/StoreDirectory.cs",
+          "additions": 21,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/NextLogonExec.csproj",
+          "additions": 10,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/NextLogonExecException.cs",
+          "additions": 76,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/ProcessLaunching/IProcessLauncher.cs",
+          "additions": 8,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/ProcessLaunching/LaunchResult.cs",
+          "additions": 33,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/ProcessLaunching/ProcessLauncher.cs",
+          "additions": 92,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Program.cs",
+          "additions": 3,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Scheduling/ComTaskSchedulerClient.cs",
+          "additions": 147,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Scheduling/ITaskSchedulerClient.cs",
+          "additions": 18,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Scheduling/WindowsArgumentEscaper.cs",
+          "additions": 53,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Security/CurrentUserProvider.cs",
+          "additions": 17,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "src/NextLogonExec/Security/ICurrentUserProvider.cs",
+          "additions": 8,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "tests/NextLogonExec.Tests/NextLogonExec.Tests.csproj",
+          "additions": 11,
+          "deletions": 0,
+          "changeType": "ADDED"
+        },
+        {
+          "path": "tests/NextLogonExec.Tests/Program.cs",
+          "additions": 265,
+          "deletions": 0,
+          "changeType": "ADDED"
+        }
+      ],
+      "headRefName": "codex/issue-1",
+      "headRefOid": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+      "isDraft": false,
+      "latestReviews": [
+        {
+          "id": "",
+          "author": {
+            "login": "copilot-pull-request-reviewer"
+          },
+          "authorAssociation": "NONE",
+          "body": "## Pull request overview\n\n\u0060NextLogonExec\u0060 \u306E\u73FE\u884C\u4ED5\u69D8\uFF08schedule/run/cancel/status/list\uFF09\u306B\u5408\u308F\u305B\u3066\u3001Windows Task Scheduler \u3092\u4F7F\u3063\u305F\u300C\u6B21\u56DE\u5BFE\u8A71\u30ED\u30B0\u30AA\u30F3\u30671\u56DE\u3060\u3051\u5B9F\u884C\u300D\u3059\u308B CLI \u30C4\u30FC\u30EB\u306E\u5B9F\u88C5\u9AA8\u683C\u30FB\u30B9\u30BF\u30D6\u524D\u63D0\u30C6\u30B9\u30C8\u30FBREADME/plan \u7FA4\u3092\u8FFD\u52A0\u3059\u308B PR \u3067\u3059\u3002\n\n**Changes:**\n- CLI\uFF08schedule/run/cancel/status/list\uFF09\u3001job \u6C38\u7D9A\u5316\uFF08JSON\uFF09\u3001job lock\u3001\u5B9F\u884C\u7D50\u679C\u8A18\u9332\u306E\u57FA\u790E\u5B9F\u88C5\u3092\u8FFD\u52A0\n- Task Scheduler 2.0 COM object model \u306B\u3088\u308B production \u767B\u9332\u30AF\u30E9\u30A4\u30A2\u30F3\u30C8\u3068\u3001Task action \u306E \u0060run --id\u0060 \u7D4C\u7531\u8D77\u52D5\uFF08caller command \u3092 action \u306B\u5165\u308C\u306A\u3044\uFF09\u3092\u5B9F\u88C5\n- \u30B9\u30BF\u30D6 scheduler/launcher \u3092\u4F7F\u3063\u305F\u30C6\u30B9\u30C8\u5165\u53E3\u3068\u3001README \u002B plan/verification artifacts \u3092\u8FFD\u52A0\n\n### Reviewed changes\n\nCopilot reviewed 34 out of 34 changed files in this pull request and generated 5 comments.\n\n\u003Cdetails\u003E\n\u003Csummary\u003EShow a summary per file\u003C/summary\u003E\n\n| File | Description |\r\n| ---- | ----------- |\r\n| README.md | CLI \u4ED5\u69D8\u30FB\u4F8B\u30FB\u5236\u9650\u30FB\u624B\u52D5\u78BA\u8A8D\u624B\u9806\u306E\u6574\u7406 |\r\n| src/NextLogonExec/NextLogonExec.csproj | NextLogonExec \u672C\u4F53\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u8FFD\u52A0 |\r\n| src/NextLogonExec/Program.cs | \u30A2\u30D7\u30EA\u8D77\u52D5\u30A8\u30F3\u30C8\u30EA\u30DD\u30A4\u30F3\u30C8\u8FFD\u52A0 |\r\n| src/NextLogonExec/Application.cs | CLI \u30EB\u30FC\u30C6\u30A3\u30F3\u30B0\u3001schedule/run/cancel/status/list \u306E\u5B9F\u88C5 |\r\n| src/NextLogonExec/ExitCode.cs | \u5B89\u5B9A\u3057\u305F exit code \u5B9A\u7FA9\u8FFD\u52A0 |\r\n| src/NextLogonExec/NextLogonExecException.cs | exit code \u306B\u7D10\u3065\u304F\u4F8B\u5916\u578B\u8FFD\u52A0 |\r\n| src/NextLogonExec/Commands/CommandLine.cs | \u30B3\u30DE\u30F3\u30C9\u30E9\u30A4\u30F3\u30E2\u30C7\u30EB\u8FFD\u52A0 |\r\n| src/NextLogonExec/Commands/CommandLineParser.cs | v1 \u5411\u3051 CLI \u30D1\u30FC\u30B5\u8FFD\u52A0 |\r\n| src/NextLogonExec/Commands/JobId.cs | Job ID \u30D0\u30EA\u30C7\u30FC\u30B7\u30E7\u30F3\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/StoreDirectory.cs | job store \u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u89E3\u6C7A\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/ScheduledJob.cs | job JSON \u30B9\u30AD\u30FC\u30DE\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/JobStore.cs | pending/history \u306E\u4FDD\u5B58\u30FB\u8AAD\u8FBC\u30FB\u5217\u6319\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/JobLock.cs | job \u6392\u4ED6\u7528\u30D5\u30A1\u30A4\u30EB\u30ED\u30C3\u30AF\u8FFD\u52A0 |\r\n| src/NextLogonExec/Diagnostics/ResultWriter.cs | result JSON \u66F8\u304D\u8FBC\u307F\u8FFD\u52A0 |\r\n| src/NextLogonExec/ProcessLaunching/IProcessLauncher.cs | \u30D7\u30ED\u30BB\u30B9\u8D77\u52D5\u62BD\u8C61\u306E\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u8FFD\u52A0 |\r\n| src/NextLogonExec/ProcessLaunching/ProcessLauncher.cs | ProcessStartInfo.ArgumentList \u30D9\u30FC\u30B9\u306E\u8D77\u52D5\u5B9F\u88C5\u8FFD\u52A0 |\r\n| src/NextLogonExec/ProcessLaunching/LaunchResult.cs | \u8D77\u52D5/\u7D42\u4E86/timeout \u7B49\u306E\u7D50\u679C\u30E2\u30C7\u30EB\u8FFD\u52A0 |\r\n| src/NextLogonExec/Scheduling/ITaskSchedulerClient.cs | Task Scheduler \u64CD\u4F5C\u306E\u62BD\u8C61\u5316\u8FFD\u52A0 |\r\n| src/NextLogonExec/Scheduling/ComTaskSchedulerClient.cs | COM/dynamic \u3092\u5883\u754C\u306B\u9589\u3058\u305F production \u5B9F\u88C5\u8FFD\u52A0 |\r\n| src/NextLogonExec/Scheduling/WindowsArgumentEscaper.cs | Task action arguments \u306E Windows \u5411\u3051\u30A8\u30B9\u30B1\u30FC\u30D7\u8FFD\u52A0 |\r\n| src/NextLogonExec/Security/ICurrentUserProvider.cs | \u73FE\u5728\u30E6\u30FC\u30B6\u30FC\u53D6\u5F97\u306E\u62BD\u8C61\u5316\u8FFD\u52A0 |\r\n| src/NextLogonExec/Security/CurrentUserProvider.cs | WindowsIdentity \u306B\u3088\u308B production \u5B9F\u88C5\u8FFD\u52A0 |\r\n| tests/NextLogonExec.Tests/NextLogonExec.Tests.csproj | \u30C6\u30B9\u30C8\u7528\uFF08\u30AB\u30B9\u30BF\u30E0\u30E9\u30F3\u30CA\u30FC\uFF09\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u8FFD\u52A0 |\r\n| tests/NextLogonExec.Tests/Program.cs | \u30B9\u30BF\u30D6 scheduler/launcher \u306B\u3088\u308B\u4E3B\u8981\u5206\u5C90\u30C6\u30B9\u30C8\u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec.md | Plan Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-change-risk-triage.md | Change Risk Triage \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-contract-kernel.md | Implementation Contract Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-contract-review-kernel.md | Implementation Contract Review Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-runtime-contract-kernel.md | Runtime Contract Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-test-design-kernel.md | Test Design Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-handoff-review.md | \u5B9F\u88C5\u5F15\u304D\u7D99\u304E\u30EC\u30D3\u30E5\u30FC artifact \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-execution.md | Implementation Execution Result artifact \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-verification-kernel.md | Verification Kernel \u7D50\u679C artifact \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-residual-decision-gate.md | Residual Decision Gate \u7D50\u679C artifact \u8FFD\u52A0 |\n\u003C/details\u003E\n\n\n\n\n\n\n\n---\n\n\uD83D\uDCA1 \u003Ca href=\u0022/suusanex/tool_next_logon_exec/new/main?filename=.github/instructions/*.instructions.md\u0022 class=\u0022Link--inTextBlock\u0022 target=\u0022_blank\u0022 rel=\u0022noopener noreferrer\u0022\u003EAdd Copilot custom instructions\u003C/a\u003E for smarter, more guided reviews. \u003Ca href=\u0022https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\u0022 class=\u0022Link--inTextBlock\u0022 target=\u0022_blank\u0022 rel=\u0022noopener noreferrer\u0022\u003ELearn how to get started\u003C/a\u003E.",
+          "submittedAt": "2026-06-28T11:26:27Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "COMMENTED",
+          "commit": {
+            "oid": ""
+          }
+        }
+      ],
+      "mergeable": "MERGEABLE",
+      "number": 2,
+      "reviewDecision": "",
+      "reviews": [
+        {
+          "id": "PRR_kwDOTHRBnM8AAAABEW76rA",
+          "author": {
+            "login": "copilot-pull-request-reviewer"
+          },
+          "authorAssociation": "NONE",
+          "body": "## Pull request overview\n\n\u0060NextLogonExec\u0060 \u306E\u73FE\u884C\u4ED5\u69D8\uFF08schedule/run/cancel/status/list\uFF09\u306B\u5408\u308F\u305B\u3066\u3001Windows Task Scheduler \u3092\u4F7F\u3063\u305F\u300C\u6B21\u56DE\u5BFE\u8A71\u30ED\u30B0\u30AA\u30F3\u30671\u56DE\u3060\u3051\u5B9F\u884C\u300D\u3059\u308B CLI \u30C4\u30FC\u30EB\u306E\u5B9F\u88C5\u9AA8\u683C\u30FB\u30B9\u30BF\u30D6\u524D\u63D0\u30C6\u30B9\u30C8\u30FBREADME/plan \u7FA4\u3092\u8FFD\u52A0\u3059\u308B PR \u3067\u3059\u3002\n\n**Changes:**\n- CLI\uFF08schedule/run/cancel/status/list\uFF09\u3001job \u6C38\u7D9A\u5316\uFF08JSON\uFF09\u3001job lock\u3001\u5B9F\u884C\u7D50\u679C\u8A18\u9332\u306E\u57FA\u790E\u5B9F\u88C5\u3092\u8FFD\u52A0\n- Task Scheduler 2.0 COM object model \u306B\u3088\u308B production \u767B\u9332\u30AF\u30E9\u30A4\u30A2\u30F3\u30C8\u3068\u3001Task action \u306E \u0060run --id\u0060 \u7D4C\u7531\u8D77\u52D5\uFF08caller command \u3092 action \u306B\u5165\u308C\u306A\u3044\uFF09\u3092\u5B9F\u88C5\n- \u30B9\u30BF\u30D6 scheduler/launcher \u3092\u4F7F\u3063\u305F\u30C6\u30B9\u30C8\u5165\u53E3\u3068\u3001README \u002B plan/verification artifacts \u3092\u8FFD\u52A0\n\n### Reviewed changes\n\nCopilot reviewed 34 out of 34 changed files in this pull request and generated 5 comments.\n\n\u003Cdetails\u003E\n\u003Csummary\u003EShow a summary per file\u003C/summary\u003E\n\n| File | Description |\r\n| ---- | ----------- |\r\n| README.md | CLI \u4ED5\u69D8\u30FB\u4F8B\u30FB\u5236\u9650\u30FB\u624B\u52D5\u78BA\u8A8D\u624B\u9806\u306E\u6574\u7406 |\r\n| src/NextLogonExec/NextLogonExec.csproj | NextLogonExec \u672C\u4F53\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u8FFD\u52A0 |\r\n| src/NextLogonExec/Program.cs | \u30A2\u30D7\u30EA\u8D77\u52D5\u30A8\u30F3\u30C8\u30EA\u30DD\u30A4\u30F3\u30C8\u8FFD\u52A0 |\r\n| src/NextLogonExec/Application.cs | CLI \u30EB\u30FC\u30C6\u30A3\u30F3\u30B0\u3001schedule/run/cancel/status/list \u306E\u5B9F\u88C5 |\r\n| src/NextLogonExec/ExitCode.cs | \u5B89\u5B9A\u3057\u305F exit code \u5B9A\u7FA9\u8FFD\u52A0 |\r\n| src/NextLogonExec/NextLogonExecException.cs | exit code \u306B\u7D10\u3065\u304F\u4F8B\u5916\u578B\u8FFD\u52A0 |\r\n| src/NextLogonExec/Commands/CommandLine.cs | \u30B3\u30DE\u30F3\u30C9\u30E9\u30A4\u30F3\u30E2\u30C7\u30EB\u8FFD\u52A0 |\r\n| src/NextLogonExec/Commands/CommandLineParser.cs | v1 \u5411\u3051 CLI \u30D1\u30FC\u30B5\u8FFD\u52A0 |\r\n| src/NextLogonExec/Commands/JobId.cs | Job ID \u30D0\u30EA\u30C7\u30FC\u30B7\u30E7\u30F3\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/StoreDirectory.cs | job store \u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u89E3\u6C7A\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/ScheduledJob.cs | job JSON \u30B9\u30AD\u30FC\u30DE\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/JobStore.cs | pending/history \u306E\u4FDD\u5B58\u30FB\u8AAD\u8FBC\u30FB\u5217\u6319\u8FFD\u52A0 |\r\n| src/NextLogonExec/Jobs/JobLock.cs | job \u6392\u4ED6\u7528\u30D5\u30A1\u30A4\u30EB\u30ED\u30C3\u30AF\u8FFD\u52A0 |\r\n| src/NextLogonExec/Diagnostics/ResultWriter.cs | result JSON \u66F8\u304D\u8FBC\u307F\u8FFD\u52A0 |\r\n| src/NextLogonExec/ProcessLaunching/IProcessLauncher.cs | \u30D7\u30ED\u30BB\u30B9\u8D77\u52D5\u62BD\u8C61\u306E\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u8FFD\u52A0 |\r\n| src/NextLogonExec/ProcessLaunching/ProcessLauncher.cs | ProcessStartInfo.ArgumentList \u30D9\u30FC\u30B9\u306E\u8D77\u52D5\u5B9F\u88C5\u8FFD\u52A0 |\r\n| src/NextLogonExec/ProcessLaunching/LaunchResult.cs | \u8D77\u52D5/\u7D42\u4E86/timeout \u7B49\u306E\u7D50\u679C\u30E2\u30C7\u30EB\u8FFD\u52A0 |\r\n| src/NextLogonExec/Scheduling/ITaskSchedulerClient.cs | Task Scheduler \u64CD\u4F5C\u306E\u62BD\u8C61\u5316\u8FFD\u52A0 |\r\n| src/NextLogonExec/Scheduling/ComTaskSchedulerClient.cs | COM/dynamic \u3092\u5883\u754C\u306B\u9589\u3058\u305F production \u5B9F\u88C5\u8FFD\u52A0 |\r\n| src/NextLogonExec/Scheduling/WindowsArgumentEscaper.cs | Task action arguments \u306E Windows \u5411\u3051\u30A8\u30B9\u30B1\u30FC\u30D7\u8FFD\u52A0 |\r\n| src/NextLogonExec/Security/ICurrentUserProvider.cs | \u73FE\u5728\u30E6\u30FC\u30B6\u30FC\u53D6\u5F97\u306E\u62BD\u8C61\u5316\u8FFD\u52A0 |\r\n| src/NextLogonExec/Security/CurrentUserProvider.cs | WindowsIdentity \u306B\u3088\u308B production \u5B9F\u88C5\u8FFD\u52A0 |\r\n| tests/NextLogonExec.Tests/NextLogonExec.Tests.csproj | \u30C6\u30B9\u30C8\u7528\uFF08\u30AB\u30B9\u30BF\u30E0\u30E9\u30F3\u30CA\u30FC\uFF09\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u8FFD\u52A0 |\r\n| tests/NextLogonExec.Tests/Program.cs | \u30B9\u30BF\u30D6 scheduler/launcher \u306B\u3088\u308B\u4E3B\u8981\u5206\u5C90\u30C6\u30B9\u30C8\u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec.md | Plan Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-change-risk-triage.md | Change Risk Triage \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-contract-kernel.md | Implementation Contract Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-contract-review-kernel.md | Implementation Contract Review Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-runtime-contract-kernel.md | Runtime Contract Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-test-design-kernel.md | Test Design Kernel \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-handoff-review.md | \u5B9F\u88C5\u5F15\u304D\u7D99\u304E\u30EC\u30D3\u30E5\u30FC artifact \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-implementation-execution.md | Implementation Execution Result artifact \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-verification-kernel.md | Verification Kernel \u7D50\u679C artifact \u8FFD\u52A0 |\r\n| plans/issue-1-next-logon-exec-residual-decision-gate.md | Residual Decision Gate \u7D50\u679C artifact \u8FFD\u52A0 |\n\u003C/details\u003E\n\n\n\n\n\n\n\n---\n\n\uD83D\uDCA1 \u003Ca href=\u0022/suusanex/tool_next_logon_exec/new/main?filename=.github/instructions/*.instructions.md\u0022 class=\u0022Link--inTextBlock\u0022 target=\u0022_blank\u0022 rel=\u0022noopener noreferrer\u0022\u003EAdd Copilot custom instructions\u003C/a\u003E for smarter, more guided reviews. \u003Ca href=\u0022https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\u0022 class=\u0022Link--inTextBlock\u0022 target=\u0022_blank\u0022 rel=\u0022noopener noreferrer\u0022\u003ELearn how to get started\u003C/a\u003E.",
+          "submittedAt": "2026-06-28T11:26:27Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "COMMENTED",
+          "commit": {
+            "oid": "d466b4428d5a7b62e3cc796124f3814bc9449b18"
+          }
+        }
+      ],
+      "state": "OPEN",
+      "title": "NextLogonExec \u306E\u5B9F\u88C5\u8A08\u753B\u3068README\u3092\u66F4\u65B0\u3059\u308B",
+      "url": "https://github.com/suusanex/tool_next_logon_exec/pull/2"
+    },
+    "reviewComments": [
+      {
+        "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789211",
+        "pull_request_review_id": 4587453100,
+        "id": 3487789211,
+        "node_id": "PRRC_kwDOTHRBnM7P43Cb",
+        "diff_hunk": "@@ -0,0 \u002B1,256 @@\n\u002Busing System.Diagnostics;\n\u002Busing NextLogonExec.Commands;\n\u002Busing NextLogonExec.Diagnostics;\n\u002Busing NextLogonExec.Jobs;\n\u002Busing NextLogonExec.ProcessLaunching;\n\u002Busing NextLogonExec.Scheduling;\n\u002Busing NextLogonExec.Security;\n\u002B\n\u002Bnamespace NextLogonExec;\n\u002B\n\u002Bpublic sealed class Application\n\u002B{\n\u002B    private readonly ITaskSchedulerClient scheduler;\n\u002B    private readonly IProcessLauncher processLauncher;\n\u002B    private readonly ICurrentUserProvider currentUserProvider;\n\u002B    private readonly TextWriter output;\n\u002B    private readonly TextWriter error;\n\u002B    private readonly string executablePath;\n\u002B\n\u002B    public Application(\n\u002B        ITaskSchedulerClient scheduler,\n\u002B        IProcessLauncher processLauncher,\n\u002B        ICurrentUserProvider currentUserProvider,\n\u002B        TextWriter output,\n\u002B        TextWriter error,\n\u002B        string executablePath)\n\u002B    {\n\u002B        this.scheduler = scheduler;\n\u002B        this.processLauncher = processLauncher;\n\u002B        this.currentUserProvider = currentUserProvider;\n\u002B        this.output = output;\n\u002B        this.error = error;\n\u002B        this.executablePath = executablePath;\n\u002B    }\n\u002B\n\u002B    public static Application CreateDefault()\n\u002B    {\n\u002B        return new Application(\n\u002B            new ComTaskSchedulerClient(),\n\u002B            new ProcessLauncher(),\n\u002B            new CurrentUserProvider(),\n\u002B            Console.Out,\n\u002B            Console.Error,\n\u002B            Environment.ProcessPath ?? AppContext.BaseDirectory);\n\u002B    }",
+        "path": "src/NextLogonExec/Application.cs",
+        "commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "original_commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "user": {
+          "login": "Copilot",
+          "id": 175728472,
+          "node_id": "BOT_kgDOCnlnWA",
+          "avatar_url": "https://avatars.githubusercontent.com/in/946600?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Copilot",
+          "html_url": "https://github.com/apps/copilot-pull-request-reviewer",
+          "followers_url": "https://api.github.com/users/Copilot/followers",
+          "following_url": "https://api.github.com/users/Copilot/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Copilot/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Copilot/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Copilot/subscriptions",
+          "organizations_url": "https://api.github.com/users/Copilot/orgs",
+          "repos_url": "https://api.github.com/users/Copilot/repos",
+          "events_url": "https://api.github.com/users/Copilot/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Copilot/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "\u0060CreateDefault\u0060 \u306E executablePath \u30D5\u30A9\u30FC\u30EB\u30D0\u30C3\u30AF\u306B \u0060AppContext.BaseDirectory\u0060 \u3092\u4F7F\u3046\u3068\u3001\u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u30D1\u30B9\u304C Task Scheduler \u306E ExecAction.Path \u306B\u5165\u3063\u3066\u8D77\u52D5\u4E0D\u80FD\u306B\u306A\u308A\u307E\u3059\uFF08ProcessPath \u304C null \u306E\u74B0\u5883\u3067\u767A\u751F\uFF09\u3002\u5B9F\u884C\u53EF\u80FD\u30D5\u30A1\u30A4\u30EB\u306E\u30D5\u30EB\u30D1\u30B9\u3092\u78BA\u5B9F\u306B\u53D6\u5F97\u3059\u308B\u30D5\u30A9\u30FC\u30EB\u30D0\u30C3\u30AF\u306B\u5909\u66F4\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+        "created_at": "2026-06-28T11:26:26Z",
+        "updated_at": "2026-06-28T11:26:27Z",
+        "html_url": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789211",
+        "pull_request_url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789211"
+          },
+          "html": {
+            "href": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789211"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789211/reactions",
+          "total_count": 0,
+          "\u002B1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 36,
+        "original_start_line": 36,
+        "start_side": "RIGHT",
+        "line": 45,
+        "original_line": 45,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 45,
+        "position": 45,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789222",
+        "pull_request_review_id": 4587453100,
+        "id": 3487789222,
+        "node_id": "PRRC_kwDOTHRBnM7P43Cm",
+        "diff_hunk": "@@ -0,0 \u002B1,26 @@\n\u002Busing System.Text.Json;\n\u002Busing NextLogonExec.ProcessLaunching;\n\u002B\n\u002Bnamespace NextLogonExec.Diagnostics;\n\u002B\n\u002Bpublic static class ResultWriter\n\u002B{\n\u002B    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\n\u002B    {\n\u002B        WriteIndented = true\n\u002B    };\n\u002B\n\u002B    public static void Write(string path, string jobId, LaunchResult result)\n\u002B    {\n\u002B        string fullPath = Path.GetFullPath(path);\n\u002B        string? directory = Path.GetDirectoryName(fullPath);\n\u002B        if (!string.IsNullOrWhiteSpace(directory))\n\u002B        {\n\u002B            Directory.CreateDirectory(directory);\n\u002B        }\n\u002B\n\u002B        File.WriteAllText(fullPath, JsonSerializer.Serialize(new ResultRecord(jobId, result), JsonOptions));\n\u002B    }",
+        "path": "src/NextLogonExec/Diagnostics/ResultWriter.cs",
+        "commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "original_commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "user": {
+          "login": "Copilot",
+          "id": 175728472,
+          "node_id": "BOT_kgDOCnlnWA",
+          "avatar_url": "https://avatars.githubusercontent.com/in/946600?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Copilot",
+          "html_url": "https://github.com/apps/copilot-pull-request-reviewer",
+          "followers_url": "https://api.github.com/users/Copilot/followers",
+          "following_url": "https://api.github.com/users/Copilot/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Copilot/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Copilot/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Copilot/subscriptions",
+          "organizations_url": "https://api.github.com/users/Copilot/orgs",
+          "repos_url": "https://api.github.com/users/Copilot/repos",
+          "events_url": "https://api.github.com/users/Copilot/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Copilot/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "\u0060ResultWriter.Write\u0060 \u304C I/O / JSON \u4F8B\u5916\u3092 \u0060NextLogonExecException\u0060 \u306B\u30DE\u30C3\u30D7\u3057\u3066\u3044\u306A\u3044\u305F\u3081\u3001\u5931\u6557\u6642\u306B \u0060Application\u0060 \u306E\u4E00\u822C catch \u306B\u843D\u3061\u3066 exit code \u304C \u0060TaskSchedulerError\u0060 \u306B\u306A\u308A\u3001\u30A8\u30E9\u30FC\u5206\u985E\u304C\u8AA4\u308A\u307E\u3059\u3002\u30B8\u30E7\u30D6\u7D50\u679C\u30D5\u30A1\u30A4\u30EB\u306E\u66F8\u304D\u8FBC\u307F\u5931\u6557\u306F \u0060JobStoreException\u0060\uFF08= exit code 5\uFF09\u306A\u3069\u306B\u30E9\u30C3\u30D7\u3057\u3066\u8FD4\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+        "created_at": "2026-06-28T11:26:26Z",
+        "updated_at": "2026-06-28T11:26:27Z",
+        "html_url": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789222",
+        "pull_request_url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789222"
+          },
+          "html": {
+            "href": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789222"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789222/reactions",
+          "total_count": 0,
+          "\u002B1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 13,
+        "original_start_line": 13,
+        "start_side": "RIGHT",
+        "line": 23,
+        "original_line": 23,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 23,
+        "position": 23,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789235",
+        "pull_request_review_id": 4587453100,
+        "id": 3487789235,
+        "node_id": "PRRC_kwDOTHRBnM7P43Cz",
+        "diff_hunk": "@@ -0,0 \u002B1,41 @@\n\u002Bnamespace NextLogonExec.Jobs;\n\u002B\n\u002Bpublic sealed class JobLock : IAsyncDisposable, IDisposable\n\u002B{\n\u002B    private readonly FileStream fileStream;\n\u002B\n\u002B    private JobLock(FileStream fileStream)\n\u002B    {\n\u002B        this.fileStream = fileStream;\n\u002B    }\n\u002B\n\u002B    public static JobLock TryAcquire(string storeDirectory, string id)\n\u002B    {\n\u002B        try\n\u002B        {\n\u002B            string lockDirectory = Path.Combine(storeDirectory, \u0022locks\u0022);\n\u002B            Directory.CreateDirectory(lockDirectory);\n\u002B            string path = Path.Combine(lockDirectory, id \u002B \u0022.lock\u0022);\n\u002B            FileStream stream = new(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);\n\u002B            return new JobLock(stream);\n\u002B        }\n\u002B        catch (IOException ex)\n\u002B        {\n\u002B            throw new JobConflictException($\u0022Job \u0027{id}\u0027 is already running or locked: {ex.Message}\u0022);\n\u002B        }",
+        "path": "src/NextLogonExec/Jobs/JobLock.cs",
+        "commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "original_commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "user": {
+          "login": "Copilot",
+          "id": 175728472,
+          "node_id": "BOT_kgDOCnlnWA",
+          "avatar_url": "https://avatars.githubusercontent.com/in/946600?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Copilot",
+          "html_url": "https://github.com/apps/copilot-pull-request-reviewer",
+          "followers_url": "https://api.github.com/users/Copilot/followers",
+          "following_url": "https://api.github.com/users/Copilot/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Copilot/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Copilot/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Copilot/subscriptions",
+          "organizations_url": "https://api.github.com/users/Copilot/orgs",
+          "repos_url": "https://api.github.com/users/Copilot/repos",
+          "events_url": "https://api.github.com/users/Copilot/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Copilot/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "\u0060JobLock.TryAcquire\u0060 \u306E IOException \u3092 \u0060JobConflictException\u0060 \u306B\u5909\u63DB\u3059\u308B\u969B\u306B inner exception \u3092\u4FDD\u6301\u3057\u3066\u3044\u306A\u3044\u305F\u3081\u3001\u0060Application\u0060 \u306E Trace \u306B\u5143\u4F8B\u5916\u306E\u8A73\u7D30\uFF08HResult/stack\uFF09\u304C\u51FA\u307E\u305B\u3093\u3002\u30AC\u30A4\u30C9\u30E9\u30A4\u30F3\u4E0A\u3082\u4F8B\u5916\u8A73\u7D30\u306E Trace \u304C\u5FC5\u8981\u306A\u306E\u3067\u3001\u3053\u3053\u3067 \u0060ex.ToString()\u0060 \u3092 Trace \u3057\u3066\u304B\u3089\u30E9\u30C3\u30D7\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+        "created_at": "2026-06-28T11:26:26Z",
+        "updated_at": "2026-06-28T11:26:27Z",
+        "html_url": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789235",
+        "pull_request_url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789235"
+          },
+          "html": {
+            "href": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789235"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789235/reactions",
+          "total_count": 0,
+          "\u002B1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 22,
+        "original_start_line": 22,
+        "start_side": "RIGHT",
+        "line": 25,
+        "original_line": 25,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 25,
+        "position": 25,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789243",
+        "pull_request_review_id": 4587453100,
+        "id": 3487789243,
+        "node_id": "PRRC_kwDOTHRBnM7P43C7",
+        "diff_hunk": "@@ -0,0 \u002B1,256 @@\n\u002Busing System.Diagnostics;\n\u002Busing NextLogonExec.Commands;\n\u002Busing NextLogonExec.Diagnostics;\n\u002Busing NextLogonExec.Jobs;\n\u002Busing NextLogonExec.ProcessLaunching;\n\u002Busing NextLogonExec.Scheduling;\n\u002Busing NextLogonExec.Security;\n\u002B\n\u002Bnamespace NextLogonExec;\n\u002B\n\u002Bpublic sealed class Application\n\u002B{\n\u002B    private readonly ITaskSchedulerClient scheduler;\n\u002B    private readonly IProcessLauncher processLauncher;\n\u002B    private readonly ICurrentUserProvider currentUserProvider;\n\u002B    private readonly TextWriter output;\n\u002B    private readonly TextWriter error;\n\u002B    private readonly string executablePath;\n\u002B\n\u002B    public Application(\n\u002B        ITaskSchedulerClient scheduler,\n\u002B        IProcessLauncher processLauncher,\n\u002B        ICurrentUserProvider currentUserProvider,\n\u002B        TextWriter output,\n\u002B        TextWriter error,\n\u002B        string executablePath)\n\u002B    {\n\u002B        this.scheduler = scheduler;\n\u002B        this.processLauncher = processLauncher;\n\u002B        this.currentUserProvider = currentUserProvider;\n\u002B        this.output = output;\n\u002B        this.error = error;\n\u002B        this.executablePath = executablePath;\n\u002B    }\n\u002B\n\u002B    public static Application CreateDefault()\n\u002B    {\n\u002B        return new Application(\n\u002B            new ComTaskSchedulerClient(),\n\u002B            new ProcessLauncher(),\n\u002B            new CurrentUserProvider(),\n\u002B            Console.Out,\n\u002B            Console.Error,\n\u002B            Environment.ProcessPath ?? AppContext.BaseDirectory);\n\u002B    }\n\u002B\n\u002B    public async Task\u003Cint\u003E RunAsync(string[] args, CancellationToken cancellationToken = default)\n\u002B    {\n\u002B        try\n\u002B        {\n\u002B            CommandLine commandLine = CommandLineParser.Parse(args);\n\u002B\n\u002B            return commandLine switch\n\u002B            {\n\u002B                ScheduleCommandLine schedule =\u003E Schedule(schedule.Options),\n\u002B                RunCommandLine run =\u003E await RunJobAsync(run.Options, cancellationToken),\n\u002B                CancelCommandLine cancel =\u003E Cancel(cancel.Options),\n\u002B                StatusCommandLine status =\u003E Status(status.Options),\n\u002B                ListCommandLine list =\u003E List(list.Options),\n\u002B                HelpCommandLine =\u003E Help(),\n\u002B                _ =\u003E throw new InvalidArgumentsException(\u0022Unknown command.\u0022)\n\u002B            };\n\u002B        }\n\u002B        catch (NextLogonExecException ex)\n\u002B        {\n\u002B            Trace.TraceError(ex.ToString());\n\u002B            error.WriteLine(ex.Message);\n\u002B            return (int)ex.ExitCode;\n\u002B        }\n\u002B        catch (Exception ex)\n\u002B        {\n\u002B            Trace.TraceError(ex.ToString());\n\u002B            error.WriteLine(\u0022Unexpected error: \u0022 \u002B ex.Message);\n\u002B            return (int)ExitCode.TaskSchedulerError;\n\u002B        }\n\u002B    }\n\u002B\n\u002B    private int Schedule(ScheduleOptions options)\n\u002B    {\n\u002B        if (options.RequireNewBoot)\n\u002B        {\n\u002B            throw new InvalidArgumentsException(\u0022--require-new-boot is not implemented in v1.\u0022);\n\u002B        }\n\u002B\n\u002B        string storeDirectory = StoreDirectory.Resolve(options.StoreDirectory);\n\u002B        JobStore store = new(storeDirectory);\n\u002B        string id = string.IsNullOrWhiteSpace(options.Id) ? Guid.NewGuid().ToString(\u0022N\u0022) : options.Id;\n\u002B        JobId.Validate(id);\n\u002B\n\u002B        if (store.PendingExists(id) \u0026\u0026 !options.Replace)\n\u002B        {\n\u002B            throw new JobConflictException($\u0022Job \u0027{id}\u0027 already exists. Use --replace to replace it.\u0022);\n\u002B        }\n\u002B\n\u002B        if (options.Replace)\n\u002B        {\n\u002B            scheduler.UnregisterTask(id);\n\u002B            store.DeletePending(id);\n\u002B        }\n\u002B\n\u002B        UserInfo userInfo = currentUserProvider.GetCurrentUser();\n\u002B        ScheduledJob job = new()\n\u002B        {\n\u002B            Id = id,\n\u002B            CreatedAtUtc = DateTimeOffset.UtcNow,\n\u002B            CreatedByUser = userInfo.Name,\n\u002B            CreatedByUserSid = userInfo.Sid,\n\u002B            WorkingDirectory = options.WorkingDirectory,\n\u002B            FileName = options.FileName,\n\u002B            Arguments = options.Arguments,\n\u002B            Elevated = options.Elevated,\n\u002B            ConsumePolicy = \u0022BeforeLaunch\u0022,\n\u002B            RequireNewBoot = false,\n\u002B            CreatedBootId = null,\n\u002B            DelaySeconds = options.DelaySeconds,\n\u002B            WaitForExit = options.WaitForExit,\n\u002B            TimeoutSeconds = options.TimeoutSeconds,\n\u002B            StdoutPath = options.StdoutPath,\n\u002B            StderrPath = options.StderrPath,\n\u002B            ResultPath = options.ResultPath\n\u002B        };\n\u002B\n\u002B        store.SavePending(job);\n\u002B\n\u002B        string actionArguments = WindowsArgumentEscaper.Join(new[] { \u0022run\u0022, \u0022--id\u0022, id, \u0022--store-dir\u0022, storeDirectory });\n\u002B        scheduler.RegisterNextLogonTask(new ScheduledTaskRegistration(\n\u002B            id,\n\u002B            executablePath,\n\u002B            actionArguments,\n\u002B            userInfo.Name,\n\u002B            options.Elevated,\n\u002B            options.DelaySeconds));\n\u002B\n\u002B        output.WriteLine($\u0022Scheduled job \u0027{id}\u0027.\u0022);\n\u002B        output.WriteLine($\u0022Job store: {storeDirectory}\u0022);\n\u002B        return (int)ExitCode.Success;\n\u002B    }\n\u002B\n\u002B    private async Task\u003Cint\u003E RunJobAsync(RunOptions options, CancellationToken cancellationToken)\n\u002B    {\n\u002B        string storeDirectory = StoreDirectory.Resolve(options.StoreDirectory);\n\u002B        JobStore store = new(storeDirectory);\n\u002B        ScheduledJob job = store.LoadPending(options.Id);\n\u002B\n\u002B        await using JobLock jobLock = JobLock.TryAcquire(storeDirectory, options.Id);\n\u002B\n\u002B        scheduler.UnregisterTask(options.Id);\n\u002B        store.DeletePending(options.Id);\n\u002B\n\u002B        if (job.DelaySeconds \u003E 0)\n\u002B        {\n\u002B            await Task.Delay(TimeSpan.FromSeconds(job.DelaySeconds), cancellationToken);\n\u002B        }",
+        "path": "src/NextLogonExec/Application.cs",
+        "commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "original_commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "user": {
+          "login": "Copilot",
+          "id": 175728472,
+          "node_id": "BOT_kgDOCnlnWA",
+          "avatar_url": "https://avatars.githubusercontent.com/in/946600?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Copilot",
+          "html_url": "https://github.com/apps/copilot-pull-request-reviewer",
+          "followers_url": "https://api.github.com/users/Copilot/followers",
+          "following_url": "https://api.github.com/users/Copilot/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Copilot/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Copilot/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Copilot/subscriptions",
+          "organizations_url": "https://api.github.com/users/Copilot/orgs",
+          "repos_url": "https://api.github.com/users/Copilot/repos",
+          "events_url": "https://api.github.com/users/Copilot/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Copilot/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "\u0060--delay\u0060 \u304C\u4E8C\u91CD\u306B\u9069\u7528\u3055\u308C\u3066\u3044\u307E\u3059\u3002\u0060schedule\u0060 \u3067 Task Scheduler \u306E LogonTrigger.Delay\uFF08\u0060ComTaskSchedulerClient.RegisterNextLogonTask\u0060\uFF09\u3092\u8A2D\u5B9A\u3057\u3066\u3044\u308B\u306E\u306B\u3001\u0060run\u0060 \u5074\u3067\u3082 \u0060job.DelaySeconds\u0060 \u3067 \u0060Task.Delay\u0060 \u3057\u3066\u3044\u308B\u305F\u3081\u3001\u6307\u5B9A\u79D2\u6570\u306E2\u500D\u5F85\u3064\u6319\u52D5\u306B\u306A\u308A\u307E\u3059\u3002\u3069\u3061\u3089\u304B\u4E00\u65B9\u306B\u5BC4\u305B\u3066\u304F\u3060\u3055\u3044\uFF08\u3053\u3053\u3067\u306F run \u5074\u306E\u5F85\u6A5F\u3092\u524A\u9664\uFF09\u3002",
+        "created_at": "2026-06-28T11:26:27Z",
+        "updated_at": "2026-06-28T11:26:27Z",
+        "html_url": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789243",
+        "pull_request_url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789243"
+          },
+          "html": {
+            "href": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789243"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789243/reactions",
+          "total_count": 0,
+          "\u002B1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 150,
+        "original_start_line": 150,
+        "start_side": "RIGHT",
+        "line": 153,
+        "original_line": 153,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 153,
+        "position": 153,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789248",
+        "pull_request_review_id": 4587453100,
+        "id": 3487789248,
+        "node_id": "PRRC_kwDOTHRBnM7P43DA",
+        "diff_hunk": "@@ -1,2 \u002B1,148 @@\n # tool_next_logon_exec\n-Windows\u3067\u306E\u9023\u7D9A\u30C6\u30B9\u30C8\u7B49\u306B\u4F7F\u7528\u3059\u308B\u60F3\u5B9A\u306E\u30C4\u30FC\u30EB\u3002\u30BF\u30B9\u30AF\u30B9\u30B1\u30B8\u30E5\u30FC\u30E9\u3092\u4F7F\u7528\u3057\u3066\u3001\u6307\u5B9A\u3057\u305F\u30B3\u30DE\u30F3\u30C9\u30E9\u30A4\u30F3\u3092\u6B21\u56DE\u30ED\u30B0\u30AA\u30F3\u6642\u306B\u5B9F\u884C\u3059\u308B\u3002\u81EA\u52D5\u30ED\u30B0\u30AA\u30F3\u7B49\u306F\u5225\u9014\u5B9F\u73FE\u3059\u308B\u524D\u63D0\u3067\u3001\u3053\u306E\u30C4\u30FC\u30EB\u306F\u6301\u305F\u306A\u3044\u3002\n\u002B\n\u002BWindows \u3067\u306E\u9023\u7D9A\u30C6\u30B9\u30C8\u7B49\u306B\u4F7F\u7528\u3059\u308B\u60F3\u5B9A\u306E\u30C4\u30FC\u30EB\u3002\u30BF\u30B9\u30AF\u30B9\u30B1\u30B8\u30E5\u30FC\u30E9\u3092\u4F7F\u7528\u3057\u3066\u3001\u6307\u5B9A\u3057\u305F\u30B3\u30DE\u30F3\u30C9\u30E9\u30A4\u30F3\u3092\u6B21\u56DE\u30ED\u30B0\u30AA\u30F3\u6642\u306B\u4E00\u5EA6\u3060\u3051\u5B9F\u884C\u3059\u308B\u3002\u81EA\u52D5\u30ED\u30B0\u30AA\u30F3\u3001\u518D\u8D77\u52D5\u3001\u30C6\u30B9\u30C8\u30D5\u30A7\u30FC\u30BA\u5224\u5B9A\u306F\u547C\u3073\u51FA\u3057\u5143\u304C\u884C\u3044\u3001\u3053\u306E\u30C4\u30FC\u30EB\u306F\u6301\u305F\u306A\u3044\u3002\n\u002B\n\u002B## \u6982\u8981\n\u002B\n\u002B\u0060NextLogonExec\u0060 \u306F\u3001\u547C\u3073\u51FA\u3057\u5143\u304C\u6307\u5B9A\u3057\u305F\u30B3\u30DE\u30F3\u30C9\u3092 JSON job \u3068\u3057\u3066\u4FDD\u5B58\u3057\u3001Task Scheduler \u306E\u30ED\u30B0\u30AA\u30F3\u30C8\u30EA\u30AC\u30FC\u3067\u6B21\u56DE\u5BFE\u8A71\u30ED\u30B0\u30AA\u30F3\u6642\u306B\u5185\u90E8 \u0060run --id\u0060 \u30A8\u30F3\u30C8\u30EA\u30DD\u30A4\u30F3\u30C8\u3092\u8D77\u52D5\u3059\u308B Windows \u30B3\u30F3\u30BD\u30FC\u30EB\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u3002\n\u002B\n\u002BTask Scheduler \u306B\u767B\u9332\u3059\u308B action \u306F\u547C\u3073\u51FA\u3057\u5143\u30B3\u30DE\u30F3\u30C9\u3067\u306F\u306A\u304F\u3001\u5E38\u306B\u6B21\u306E\u5F62\u306B\u306A\u308B\u3002\n\u002B\n\u002B\u0060\u0060\u0060text\n\u002BNextLogonExec.exe run --id \u003Cjob-id\u003E\n\u002B\u0060\u0060\u0060",
+        "path": "README.md",
+        "commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "original_commit_id": "d466b4428d5a7b62e3cc796124f3814bc9449b18",
+        "user": {
+          "login": "Copilot",
+          "id": 175728472,
+          "node_id": "BOT_kgDOCnlnWA",
+          "avatar_url": "https://avatars.githubusercontent.com/in/946600?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Copilot",
+          "html_url": "https://github.com/apps/copilot-pull-request-reviewer",
+          "followers_url": "https://api.github.com/users/Copilot/followers",
+          "following_url": "https://api.github.com/users/Copilot/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Copilot/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Copilot/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Copilot/subscriptions",
+          "organizations_url": "https://api.github.com/users/Copilot/orgs",
+          "repos_url": "https://api.github.com/users/Copilot/repos",
+          "events_url": "https://api.github.com/users/Copilot/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Copilot/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "README \u306E Task Scheduler action \u4F8B\u304C\u5B9F\u88C5\u3068\u4E00\u81F4\u3057\u3066\u3044\u307E\u305B\u3093\u3002\u5B9F\u88C5\u3067\u306F action arguments \u306B\u5E38\u306B \u0060--store-dir \u003Cresolved path\u003E\u0060 \u3092\u542B\u3081\u308B\u305F\u3081\u3001\u3053\u3053\u3082 \u0060--store-dir\u0060 \u3092\u542B\u3080\u5F62\u306B\u66F4\u65B0\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+        "created_at": "2026-06-28T11:26:27Z",
+        "updated_at": "2026-06-28T11:26:27Z",
+        "html_url": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789248",
+        "pull_request_url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789248"
+          },
+          "html": {
+            "href": "https://github.com/suusanex/tool_next_logon_exec/pull/2#discussion_r3487789248"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/2"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/suusanex/tool_next_logon_exec/pulls/comments/3487789248/reactions",
+          "total_count": 0,
+          "\u002B1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 9,
+        "original_start_line": 9,
+        "start_side": "RIGHT",
+        "line": 13,
+        "original_line": 13,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 14,
+        "position": 14,
+        "subject_type": "line"
+      }
+    ],
+    "checks": null
+  }
+}
